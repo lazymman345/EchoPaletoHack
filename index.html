@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circle Grid Game</title>
+    <style>
+        body {
+            background-color: black;
+            /* Black background for the entire site */
+            display: flex;
+            /* Use flexbox for centering */
+            flex-direction: column;
+            /* Stack elements vertically */
+            justify-content: center;
+            /* Center vertically */
+            align-items: center;
+            /* Center horizontally */
+            height: 100vh;
+            /* Full viewport height */
+            margin: 0;
+            /* Remove default margin */
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(6, 100px);
+            grid-template-rows: repeat(5, 100px);
+            gap: 10px;
+            position: relative;
+            /* To position the dots behind the grid */
+            z-index: 1;
+            /* Ensure the grid is above the dots */
+            padding: 20px;
+            /* Add padding to ensure dots extend past edges */
+        }
+
+        .circle {
+            border: 2px solid red;
+            /* Red outline */
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            background-color: black;
+            /* Fill black */
+            opacity: 1;
+            position: relative;
+            /* To stack correctly with dots */
+            z-index: 2;
+            /* Ensure circles are above the dots */
+        }
+
+        .highlight {
+            background-color: cyan;
+            /* Change the circle's fill color to cyan when highlighted */
+            border: 2px solid white;
+            /* Optional: you could also change the border to make it stand out */
+        }
+
+
+        .selected-correct {
+            background-color: blue;
+            /* Correct selection */
+        }
+
+        .selected-incorrect {
+            background-color: red;
+            /* Incorrect selection */
+        }
+
+        .inactive {
+            background-color: black;
+            /* Inactive rows stay black */
+        }
+
+        .active {
+            border: 2px solid white;
+            /* Active column outline */
+        }
+
+        .selected {
+            border: 4px solid white;
+            /* Selected circle larger outline */
+        }
+
+        /* Dots background */
+        .grid::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            /* Extend dots slightly above */
+            left: -10px;
+            /* Extend dots slightly to the left */
+            right: -10px;
+            /* Extend dots slightly to the right */
+            bottom: -10px;
+            /* Extend dots slightly below */
+            background: radial-gradient(circle, white 1px, transparent 1px);
+            background-size: 20px 20px;
+            /* Adjust the size of the dots */
+            z-index: 0;
+            /* Place dots behind everything else */
+        }
+
+        /* Centering the start button */
+        #startButton {
+            margin-top: 20px;
+            /* Space between the grid and the button */
+            padding: 10px 20px;
+            /* Button padding */
+            font-size: 16px;
+            /* Button font size */
+            cursor: pointer;
+            /* Change cursor to pointer */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="grid" id="grid"></div>
+    <button id="startButton">Start</button>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
